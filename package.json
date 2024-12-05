@@ -1,0 +1,36 @@
+{
+  "name": "test-ui-automation-playwright-ts",
+  "version": "1.0.0",
+  "description": "This is the Test UI automation with Playwright and Typescript",
+  "scripts": {
+    "test": "npx playwright test",
+    "report": "playwright show-report playwright-report",
+    "allure": "allure generate ./allure-results --clean && allure open ./allure-report",
+    "cc-login": "npx playwright test tests/e2e/customerConnect/login tests/e2e/customerConnect/navMenu --project=chromium"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sakshi900/ASANA_Test_Automation_Framework.git"
+  },
+  "author": "Sakshi Batra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sakshi900/ASANA_Test_Automation_Framework/issues"
+  },
+  "homepage": "https://github.com/Sakshi900/ASANA_Test_Automation_Framework#readme",
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "@playwright/test": "^1.44.1",
+    "@types/node": "^20.11.16",
+    "allure-commandline": "^2.23.1",
+    "allure-playwright": "^2.5.0",
+    "dotenv": "^16.4.5",
+    "playwright": "^1.49.0",
+    "winston": "^3.11.0"
+
+  },
+  "dependencies": {
+    "dotenv-cli": "^7.4.2",
+    "moment": "^2.30.1"
+  }
+}
