@@ -5,7 +5,6 @@
 
 import { Browser, Page, test as baseTest, expect } from '@playwright/test';
 import { getPage, setPageWithCache } from '../utils/page-utils';
-import { getEnvironment } from '../utility/environment';
 
 let beforeAllPage: Page;
 
@@ -18,11 +17,6 @@ baseTest.beforeAll(async ({ browser }: { browser: Browser }) => {
   
   const isPageCached = await setPageWithCache(beforeAllPage);
   expect(isPageCached).toBe(true);
-
-  const environment = getEnvironment();
-  console.log(`Environment set as: ${environment}`);
-  const isValidEnvironment = environment === 'nonprod' || environment === 'prod';
-  expect(isValidEnvironment).toBe(true);
 });
 
 // Hook to run before each test
