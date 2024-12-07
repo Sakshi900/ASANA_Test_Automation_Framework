@@ -23,7 +23,7 @@ test.describe.serial('Loop QA UseCases => Login to Test site', () => {
   });
 
   TaskStatusData.forEach(taskData => {
-    test(`"${taskData.test}" ==>  Verify task "${taskData.task}" in "${taskData.app}"`, async ({ }) => {
+    test(`Verify task "${taskData.task}" in "${taskData.app}"`, async ({ }) => {
       allure.label('Verify task', `"${taskData.task}" in "${taskData.app}"`);
       AppPage.navigateToApp(taskData.app)
       TaskPage.verifySelectedComponentDetails([taskData.taskStatus], taskData.app);

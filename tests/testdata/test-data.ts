@@ -16,7 +16,7 @@ export const AppData = {
 
 export const TaskStatusData = [
   {
-    test: 'Test Case 1',
+   
     app: "Web Application",
     task: "Implement user authentication",
     taskDetails: 'Add login and signup functionality',
@@ -24,7 +24,7 @@ export const TaskStatusData = [
     tags: ["Feature", "High Priority"]
   },
   {
-    test: 'Test Case 2',
+   
     app: "Web Application",
     task: "Fix navigation bug",
     taskDetails: 'Menu does not close on mobile',
@@ -32,7 +32,7 @@ export const TaskStatusData = [
     tags: ["Bug"]
   },
   {
-    test: 'Test Case 3',
+   
     app: "Web Application",
     task: "Design system updates",
     taskDetails: 'Update color palette and typography',
@@ -40,7 +40,7 @@ export const TaskStatusData = [
     tags: ["Design"]
   },
   {
-    test: 'Test Case 4',
+   
     app: "Mobile Application",
     task: "Push notification system",
     taskDetails: 'Implement push notifications for iOS and Android',
@@ -48,7 +48,7 @@ export const TaskStatusData = [
     tags: ["Feature"]
   },
   {
-    test: 'Test Case 5',
+  
     app: "Mobile Application",
     task: "Offline mode",
     taskDetails: 'Enable offline data synchronization',
@@ -56,7 +56,7 @@ export const TaskStatusData = [
     tags: ["Feature", "High Priority"]
   },
   {
-    test: 'Test Case 6',
+   
     app: "Mobile Application",
     task: "App icon design",
     taskDetails: 'Create app icons for all required sizes',
@@ -64,7 +64,7 @@ export const TaskStatusData = [
     tags: ["Design"]
   },
   {
-    test: 'Test Case 7 => Test for handling blank task and no tags',
+   
     app: "Mobile Application",
     task: '',
     taskDetails: '',

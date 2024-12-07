@@ -1,54 +1,54 @@
+import { expect } from "playwright/test";
 import { waitForPageLoadState } from "../../../utils/action-utils";
-import { expectElementNotToBeVisible, expectElementToBeVisible, expectElementToHaveText } from "../../../utils/assert-utils";
+import { expectElementNotToBeVisible, expectElementToBeVisible, expectElementToContainText, expectElementToHaveCount, expectElementToHaveText } from "../../../utils/assert-utils";
 import { getLocator, getLocatorByText } from "../../../utils/locator-utils";
 
 const TaskBoardElements = {
-  componentSelectedHeader: (componentName: string) => getLocator(`//h1[text()='${componentName}']`),
-  componentSelectedSubtext: (componentSubText: string) => getLocatorByText(`${componentSubText}`).last(),
+  appHeader: (appName: string) => getLocator(`//h1[text()='${appName}']`),
+  appSubHeader: (appSubheader: string) => getLocatorByText(`${appSubheader}`).last(),
 
-  taskHeaders: (taskHeader: string) => getLocatorByText(`${taskHeader}`),
-  contentTaskBox: (taskStatus: string) => getLocator(`//h2[text()='${taskStatus}']/following-sibling::div//div[@class="bg-white p-4 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow"]`).first(),
-  taskDetailsHeader: (taskStatus: string, text: string) => getLocator(`//h2[text()='${taskStatus}']/following-sibling::div//div[@class="bg-white p-4 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow"]//h3[text()='${text}']`),
-  taskDetailsSubtext: (taskStatus: string, text: string) => getLocator(`//h2[text()='${taskStatus}']/following-sibling::div//div[@class="bg-white p-4 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow"]//p[text()='${text}']`),
-  taskDetailsTags: (taskStatus: string, contentsubheader: string) => getLocator(`//h2[text()='${taskStatus}']/parent::div/div//h3[text()='${contentsubheader}']/parent::div//div[@class="flex flex-wrap gap-2 mb-3"]//span`),
+  taskStatus: (taskHeader: string) => getLocatorByText(`${taskHeader}`),
+  taskContentBox: (taskStatus: string) => getLocator(`//h2[text()='${taskStatus}']/following-sibling::div//div[@class="bg-white p-4 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow"]`),
+  task: (taskStatus: string, text: string) => getLocator(`//h2[text()='${taskStatus}']/following-sibling::div//div[@class="bg-white p-4 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow"]//h3[text()="${text}"]`),
+  taskDetails: (taskStatus: string, text: string) => getLocator(`//h2[text()='${taskStatus}']/following-sibling::div//div[@class="bg-white p-4 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow"]//p[text()="${text}"]`),
+  taskTags: (taskStatus: string, task:string) => getLocator(`//h2[text()="${taskStatus}"]/parent::div//h3[text()='${task}']/following-sibling::div[@class="flex flex-wrap gap-2 mb-3"]//span`)
 
 
 }
 
-export async function verifySelectedComponentDetails(taskHeader: string[], componentname: string) {
+export async function verifySelectedComponentDetails(taskHeader: string[], task: string) {
   await waitForPageLoadState()
-  await expectElementToBeVisible(await TaskBoardElements.componentSelectedHeader(componentname))
-  // await expectElementToHaveText(await TaskBoardElements.componentSelectedHeader(componentname), componentname)
-
+  await expectElementToBeVisible(await TaskBoardElements.appHeader(task))
   for (const taskStatus of taskHeader) {
-    await expectElementToBeVisible(await TaskBoardElements.taskHeaders(taskStatus));
+    await expectElementToBeVisible(await TaskBoardElements.taskStatus(taskStatus));
   }
 }
 
 export async function verifyContentWithTaskStatus(
   taskStatus: string,
-  contentHeader: string,
-  contentSubheader: string,
-  taskTags: string[]
+  task: string,
+  taskDetails: string,
+  taskTags: string[] = []
 ) {
-  await expectElementToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
-  if (contentHeader && contentSubheader.trim() === '' && (!taskTags || taskTags.length === 0)) {
-    await expectElementNotToBeVisible(TaskBoardElements.taskDetailsHeader(taskStatus, contentHeader));
-    await expectElementNotToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
-    await expectElementNotToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus, contentHeader));
-    await expectElementNotToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus, contentHeader));
+
+  if (!task || taskDetails == null || taskDetails === '') {
+    // If either task is empty/null or taskDetails is empty/null
+    await expectElementNotToBeVisible(TaskBoardElements.taskContentBox(taskStatus));
+    await expectElementNotToBeVisible(TaskBoardElements.task(taskStatus, task).first());
+    await expectElementNotToBeVisible(TaskBoardElements.taskDetails(taskStatus, taskDetails).first());
   } else {
-    await expectElementToBeVisible(TaskBoardElements.taskDetailsHeader(taskStatus, contentHeader));
-    await expectElementToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
+    // If both task and taskDetails are non-empty
+    await expectElementToBeVisible(TaskBoardElements.taskContentBox(taskStatus).first());
+    await expectElementToBeVisible(TaskBoardElements.task(taskStatus, task).first());
+    await expectElementToBeVisible(TaskBoardElements.taskDetails(taskStatus, taskDetails).first());
+  }
+  if (taskTags.length == 0) {
+    await expectElementToHaveCount(TaskBoardElements.taskTags(taskStatus,task), 0)
+  } else {
+    await expect(await TaskBoardElements.taskTags(taskStatus,task).count()).toBeGreaterThanOrEqual(1)
 
-    const tagElements = await TaskBoardElements.taskDetailsTags(taskStatus, contentHeader).all();
-    await Promise.all(tagElements.map(async (element) => await element.waitFor()));
-
-    for (const tag of taskTags) {
-      await expectElementToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus, tag));
+    for (let i = 0; i< await TaskBoardElements.taskTags(taskStatus,task).count(); i++) {
+      await expectElementToHaveText(await TaskBoardElements.taskTags(taskStatus,task).nth(i), taskTags[i])
     }
   }
-}
-
-
-
+} 

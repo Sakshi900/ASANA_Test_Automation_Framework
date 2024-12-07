@@ -57,7 +57,7 @@ export default defineConfig({
   },
 
   use: {
-    headless: true,
+    headless: false,
     viewport: null, // Consistent viewport
     launchOptions: {
       args: [
