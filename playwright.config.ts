@@ -58,7 +58,7 @@ export default defineConfig({
 
   use: {
     headless: true,
-    viewport: { width: 1280, height: 720 }, // Consistent viewport
+    viewport: null, // Consistent viewport
     launchOptions: {
       args: [
         '--enable-features=NativeNotifications',
