@@ -101,5 +101,3 @@ export default defineConfig({
    */
   webServer: undefined, // Reset this to undefined if not using localhost
 });
-
-module.exports = defineConfig
