@@ -27,14 +27,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Run Playwright tests
+      # Step 4: Install Playwright browsers
+      - name: Install Playwright browsers
+        run: npx playwright install
+
+      # Step 5: Run Playwright tests
       - name: Run Playwright tests
         run: npm run test
-
-      # Step 5: Generate Allure Report
-      - name: Generate Allure Report
-        run: |
-          npx allure generate allure-results --clean
 
       # Step 6: Upload Allure Report as an artifact
       - name: Upload Allure Report
