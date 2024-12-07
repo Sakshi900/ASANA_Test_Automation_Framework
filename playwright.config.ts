@@ -41,7 +41,7 @@ export default defineConfig({
   /**
    * The number of worker threads to use for running tests. This is set to a different value on CI.
    */
-  workers: process.env.CI ? 2 : 2,
+  workers: process.env.CI ? 6 : 2,
 
   /* Note: Add allure-playwright report */
   /**
