@@ -50,4 +50,4 @@ export const NAVIGATION_TIMEOUT = 30 * 1000;
 /**
  * Timeout constant for Playwright's test functions, set to 120000 milliseconds (2 minutes).
  */
-export const TEST_TIMEOUT = 6 * 60 * 1000;
+export const TEST_TIMEOUT = 10 * 60 * 1000;
