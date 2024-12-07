@@ -1,6 +1,5 @@
 import { test } from '../src/setup/page-setup';
 import * as LoginPage from '../src/pages/login/login-page';
-import * as HomePage from '../src/pages/homePage/home-page';
 import * as TaskPage from '../src/pages/Nav-Menu/Task-Status/task-status-page';
 import * as AppPage from '../src/pages/Nav-Menu/app-page';
 import { ASANA_URLS, USER_INFO } from './testdata/test-data';
@@ -73,7 +72,7 @@ test.describe('Loop QA UseCases => Login to Test site', () => {
 
   test.afterEach('Logout Test', async () => {
     allure.label('AfterAll', 'Logout From Application');
-    await HomePage.clickOnLogoutBtn();
+    await AppPage.clickOnLogoutBtn();
     await LoginPage.verifyLoginPageComponents();
   });
 
