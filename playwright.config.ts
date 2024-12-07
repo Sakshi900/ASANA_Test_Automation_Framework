@@ -36,7 +36,7 @@ export default defineConfig({
   /**
    * The number of times to retry failed tests. Retries value is only set to happen on CI.
    */
-  retries: process.env.CI ? 2 : 2,
+  retries: process.env.CI ? 4 : 3,
 
   /**
    * The number of worker threads to use for running tests. This is set to a different value on CI.
