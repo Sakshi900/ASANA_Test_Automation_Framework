@@ -39,7 +39,7 @@ export async function verifyContentWithTaskStatus(
     const tagElements = await TaskBoardElements.taskDetailsTags(taskStatus, contentHeader).all();
 
     // Wait for all tag elements
-    await Promise.all(await tagElements.map(async (element) => await element.waitFor()));
+    await Promise.all( await tagElements.map(async (element) => await element.waitFor()));
 
     const actualTags = await Promise.all(
       await tagElements.map(async (element) => await element.textContent()) // Extract the text from each element
@@ -49,7 +49,7 @@ export async function verifyContentWithTaskStatus(
     if (await taskTags.length > 0) {
       for (const tag of taskTags) {
         // If the tag is blank, skip the check for that tag
-        if (await tag.trim() === '') continue;
+        if (await tag.trim() === ''|| null) continue;
 
         if (!actualTags.includes(tag)) {
           throw new Error(`Expected tag "${tag}" not found in task tags. Found: ${actualTags.join(', ')}`);
