@@ -46,11 +46,8 @@ export async function verifyContentWithTaskStatus(
 
     if (await taskTags.length > 0) {
       for (const tag of taskTags) {
-        if (await tag.trim() === ''|| null) continue;
+        await expectElementNotToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus,tag));
 
-        if (!actualTags.includes(tag)) {
-          throw new Error(`Expected tag "${tag}" not found in task tags. Found: ${actualTags.join(', ')}`);
-        }
       }
     }
   } else {
