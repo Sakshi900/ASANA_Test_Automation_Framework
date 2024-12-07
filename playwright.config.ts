@@ -7,7 +7,6 @@ import { defineConfig, devices } from '@playwright/test'; // Ensure correct impo
 import dotenv from 'dotenv';
 import { TEST_TIMEOUT, EXPECT_TIMEOUT, ACTION_TIMEOUT, NAVIGATION_TIMEOUT } from './src/utils/timeout-constants';
 import { WaitForLoadStateOptions } from './src/setup/optional-parameter-types';
-import { gotoURL } from './src/utils/action-utils';
 
 // Load environment variables
 dotenv.config(); // If you decide to use .env files later
@@ -59,6 +58,7 @@ export default defineConfig({
 
   use: {
     headless: true,
+    viewport: { width: 1280, height: 720 }, // Consistent viewport
     launchOptions: {
       args: [
         '--enable-features=NativeNotifications',
