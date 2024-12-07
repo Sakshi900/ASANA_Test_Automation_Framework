@@ -27,8 +27,8 @@ export const TaskStatusName = {
 
 export const WebApplicationData= {
   Todo: {
-    header: 'Implement user authentication',
-    subheader: 'Add login and signup functionality',
+    task: 'Implement user authentication',
+    taskDetails: 'Add login and signup functionality',
     tags: ['Feature', 'High Priority']
  
   }
