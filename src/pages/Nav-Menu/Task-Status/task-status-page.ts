@@ -46,7 +46,7 @@ export async function verifyContentWithTaskStatus(
 
     if (await taskTags.length > 0) {
       for (const tag of taskTags) {
-        await expectElementNotToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus,tag));
+        await expectElementToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus,tag));
 
       }
     }
