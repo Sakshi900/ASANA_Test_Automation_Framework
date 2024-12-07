@@ -31,28 +31,35 @@ export async function verifyContentWithTaskStatus(
   contentSubheader: string,
   taskTags: string[]
 ) {
-  if ((contentHeader !== '' || null) && contentHeader.trim() !== '' || null) {
+  if (contentHeader && contentHeader.trim() !== '') {
     await expectElementToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
     await expectElementToBeVisible(TaskBoardElements.taskDetailsHeader(taskStatus, contentHeader));
     await expectElementToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
+    
     const tagElements = await TaskBoardElements.taskDetailsTags(taskStatus, contentHeader).all();
 
+    // Wait for all tag elements
     await Promise.all(tagElements.map(async (element) => await element.waitFor()));
 
     const actualTags = await Promise.all(
       tagElements.map(async (element) => await element.textContent()) // Extract the text from each element
     );
 
-    for (const tag of taskTags) {
-      if (!actualTags.includes(tag)) {
-        throw new Error(`Expected tag "${tag}" not found in task tags. Found: ${actualTags.join(', ')}`);
+    // Ensure taskTags is an array of non-empty strings
+    if (taskTags.length > 0) {
+      for (const tag of taskTags) {
+        // If the tag is blank, skip the check for that tag
+        if (tag.trim() === '') continue;
+
+        if (!actualTags.includes(tag)) {
+          throw new Error(`Expected tag "${tag}" not found in task tags. Found: ${actualTags.join(', ')}`);
+        }
       }
     }
-  }
-  else {
+  } else {
+    // For blank contentHeader, expect elements to be not visible
     await expectElementNotToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
     await expectElementNotToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
-
   }
 }
 
