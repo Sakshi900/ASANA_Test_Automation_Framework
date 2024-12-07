@@ -63,14 +63,14 @@ export const TaskStatusData = [
     taskStatus: "Done",
     tags: ["Design"]
   },
-  // {
-  //   test: 'Test Case 7 => Test for handling blank task and no tags',
-  //   app: "Mobile Application",
-  //   task: '',
-  //   taskDetails: '',
-  //   taskStatus: "Review",
-  //   tags: []
-  // },
+  {
+    test: 'Test Case 7 => Test for handling blank task and no tags',
+    app: "Mobile Application",
+    task: '',
+    taskDetails: '',
+    taskStatus: "Review",
+    tags: []
+  },
 ];
 
 

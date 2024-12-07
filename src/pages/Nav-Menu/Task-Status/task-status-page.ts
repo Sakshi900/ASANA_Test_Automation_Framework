@@ -31,32 +31,33 @@ export async function verifyContentWithTaskStatus(
   contentSubheader: string,
   taskTags: string[]
 ) {
+  // If taskHeader (contentHeader) is not blank
   if (contentHeader && contentHeader.trim() !== '') {
     await expectElementToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
     await expectElementToBeVisible(TaskBoardElements.taskDetailsHeader(taskStatus, contentHeader));
     await expectElementToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
 
+    // Check if tags exist and are visible
     const tagElements = await TaskBoardElements.taskDetailsTags(taskStatus, contentHeader).all();
     await Promise.all(tagElements.map(async (element) => await element.waitFor()));
 
     if (taskTags.length > 0) {
+      // Expect each tag to be visible if taskTags are present
       for (const tag of taskTags) {
         await expectElementToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus, tag));
       }
     } else {
-      // For blank contentHeader, expect elements to be not visible
-      await expectElementNotToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
-      await expectElementNotToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
-      // Ensure no tags are visible when taskTags is empty
+      // If no tags, make sure tags are not visible
       await expectElementNotToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus, contentHeader));
     }
   } else {
-    // In case of a blank task (empty contentHeader), ensure all related elements are not visible
-    await expectElementNotToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
+    // When task is blank (contentHeader empty)
+    await expectElementToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
     await expectElementNotToBeVisible(TaskBoardElements.taskDetailsHeader(taskStatus, contentHeader));
     await expectElementNotToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
     await expectElementNotToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus, contentHeader));
   }
 }
+
 
 
