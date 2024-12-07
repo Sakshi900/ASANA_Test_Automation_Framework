@@ -31,28 +31,32 @@ export async function verifyContentWithTaskStatus(
   contentSubheader: string,
   taskTags: string[]
 ) {
-  // Corrected the condition for contentHeader check
   if (contentHeader && contentHeader.trim() !== '') {
     await expectElementToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
     await expectElementToBeVisible(TaskBoardElements.taskDetailsHeader(taskStatus, contentHeader));
     await expectElementToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
 
     const tagElements = await TaskBoardElements.taskDetailsTags(taskStatus, contentHeader).all();
-
-    // Use Promise.all to wait for tag elements to stabilize
-    await Promise.all(tagElements.map(async (element) => {
-      await element.waitFor();
-    }));
+    await Promise.all(tagElements.map(async (element) => await element.waitFor()));
 
     if (taskTags.length > 0) {
       for (const tag of taskTags) {
         await expectElementToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus, tag));
       }
+    } else {
+      // For blank contentHeader, expect elements to be not visible
+      await expectElementNotToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
+      await expectElementNotToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
+      // Ensure no tags are visible when taskTags is empty
+      await expectElementNotToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus, contentHeader));
     }
   } else {
-    // For blank contentHeader, expect elements to be not visible
+    // In case of a blank task (empty contentHeader), ensure all related elements are not visible
     await expectElementNotToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
+    await expectElementNotToBeVisible(TaskBoardElements.taskDetailsHeader(taskStatus, contentHeader));
     await expectElementNotToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
+    await expectElementNotToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus, contentHeader));
   }
 }
+
 
