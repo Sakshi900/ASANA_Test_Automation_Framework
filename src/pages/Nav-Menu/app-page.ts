@@ -9,19 +9,13 @@ const AppPageElements = {
 }
 
 export async function navigateToApp(appName: string) {
-  await waitForPageLoadState(); // Ensure the page has fully loaded before any action
+  await waitForPageLoadState()
+  if (appName !== AppData.webApplicationName) {
+    await click(AppPageElements.appName(appName).first());
+    await waitForPageLoadState()
 
-  // Ensure the app name is valid and navigate
-  const appLocator = AppPageElements.appName(appName).first();
-  if (appName === AppData.mobileApplicationName || appName === AppData.webApplicationName) {
-    await click(appLocator, { timeout: 30000 }); // Set timeout for app navigation
-    await appLocator.waitFor({ state: 'visible' }); // Wait until the element is visible
-    await waitForPageLoadState(); // Wait for the page load after navigation
-  } else {
-    throw new Error(`Invalid app name: ${appName}. Cannot navigate.`);
   }
 }
-
 
 export async function clickOnLogoutBtn() {
   await expectElementToBeVisible(AppPageElements.logoutBtn())

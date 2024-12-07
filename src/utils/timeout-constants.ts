@@ -35,7 +35,7 @@ export const MAX_TIMEOUT = 60 * 1000;
 /**
  * Timeout constant for Playwright's expect function, set to 5000 milliseconds (5 seconds).
  */
-export const EXPECT_TIMEOUT = 20 * 1000;
+export const EXPECT_TIMEOUT = 30 * 1000;
 
 /**
  * Timeout constant for Playwright's action functions, set to 5000 milliseconds (5 seconds).

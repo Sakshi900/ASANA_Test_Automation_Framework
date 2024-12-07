@@ -31,7 +31,7 @@ export async function verifyContentWithTaskStatus(
   contentSubheader: string,
   taskTags: string[]
 ) {
-  if ((contentHeader !== ''|| null) && contentHeader.trim() !== '' || null) {
+  if ((contentHeader !== '' || null) && contentHeader.trim() !== '' || null) {
     await expectElementToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
     await expectElementToBeVisible(TaskBoardElements.taskDetailsHeader(taskStatus, contentHeader));
     await expectElementToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
