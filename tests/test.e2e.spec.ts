@@ -6,7 +6,7 @@ import { ASANA_URLS, USER_INFO, TaskStatusData } from './testdata/test-data';
 import { allure } from 'allure-playwright';
 import { gotoURL, wait } from '../src/utils/action-utils';
 
-test.describe('Loop QA UseCases => Login to Test site', () => {
+test.describe.serial('Loop QA UseCases => Login to Test site', () => {
 
 
   test.beforeEach('Login Test', async () => {
