@@ -40,20 +40,16 @@ export async function verifyContentWithTaskStatus(
 
     await Promise.all( await tagElements.map(async (element) => await element.waitFor()));
 
-    const actualTags = await Promise.all(
-      await tagElements.map(async (element) => await element.textContent()) 
-    );
-
     if (await taskTags.length > 0) {
       for (const tag of taskTags) {
         await expectElementToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus,tag));
 
       }
+    } else {
+      // For blank contentHeader, expect elements to be not visible
+      await expectElementNotToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
+      await expectElementNotToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
     }
-  } else {
-    // For blank contentHeader, expect elements to be not visible
-    await expectElementNotToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
-    await expectElementNotToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
   }
 }
 
