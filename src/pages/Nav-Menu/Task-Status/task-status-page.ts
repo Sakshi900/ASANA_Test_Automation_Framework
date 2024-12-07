@@ -31,20 +31,18 @@ export async function verifyContentWithTaskStatus(
   contentSubheader: string,
   taskTags: string[]
 ) {
-  if (contentHeader && contentHeader.trim() !== '' || null) {
+  if ((contentHeader !== ''|| null) && contentHeader.trim() !== '' || null) {
     await expectElementToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
     await expectElementToBeVisible(TaskBoardElements.taskDetailsHeader(taskStatus, contentHeader));
     await expectElementToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
     const tagElements = await TaskBoardElements.taskDetailsTags(taskStatus, contentHeader).all();
 
-    // Wait for the elements to be present
     await Promise.all(tagElements.map(async (element) => await element.waitFor()));
 
     const actualTags = await Promise.all(
       tagElements.map(async (element) => await element.textContent()) // Extract the text from each element
     );
 
-    // Verify all expected tags are present
     for (const tag of taskTags) {
       if (!actualTags.includes(tag)) {
         throw new Error(`Expected tag "${tag}" not found in task tags. Found: ${actualTags.join(', ')}`);
