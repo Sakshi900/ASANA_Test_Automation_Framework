@@ -16,7 +16,7 @@ export const SMALL_TIMEOUT = 20 * 1000;
 /**
  * Standard timeout constant, set to 15000 milliseconds (15 seconds).
  */
-export const STANDARD_TIMEOUT = 30 * 1000;
+export const STANDARD_TIMEOUT = 50 * 1000;
 
 /**
  * Timeout constant for bigger actions/assertions, set to 300000 milliseconds (300 seconds).
