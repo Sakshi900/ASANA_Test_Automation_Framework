@@ -36,12 +36,12 @@ export default defineConfig({
   /**
    * The number of times to retry failed tests. Retries value is only set to happen on CI.
    */
-  retries: process.env.CI ? 4 : 3,
+  retries: process.env.CI ? 0 : 0,
 
   /**
    * The number of worker threads to use for running tests. This is set to a different value on CI.
    */
-  workers: process.env.CI ? 5 : 4,
+  workers: process.env.CI ? 4 : 4,
 
   /* Note: Add allure-playwright report */
   /**
