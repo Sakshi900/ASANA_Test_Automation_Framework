@@ -13,7 +13,6 @@ const loginPageElements = {
 }
 
 export async function performLogin(username: string, password: string) {
-  await gotoURL(ASANA_URLS.baseUrl)
   verifyLoginPageComponents()
   enterUsernameAndPassword(username, password)
 }

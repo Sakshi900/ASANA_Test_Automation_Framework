@@ -7,6 +7,7 @@ import { defineConfig, devices } from '@playwright/test'; // Ensure correct impo
 import dotenv from 'dotenv';
 import { TEST_TIMEOUT, EXPECT_TIMEOUT, ACTION_TIMEOUT, NAVIGATION_TIMEOUT } from './src/utils/timeout-constants';
 import { WaitForLoadStateOptions } from './src/setup/optional-parameter-types';
+import { gotoURL } from './src/utils/action-utils';
 
 // Load environment variables
 dotenv.config(); // If you decide to use .env files later
@@ -47,8 +48,9 @@ export default defineConfig({
   /**
    * The reporter to use. This can be set to use a different value on CI.
    */
-  reporter: [['./src/setup/custom-logger.ts'], ['junit', { outputFile: 'results.xml' }], ['dot']],
-
+  reporter: [
+    ['allure-playwright'],
+  ],
   timeout: TEST_TIMEOUT,
 
   expect: {
@@ -69,7 +71,7 @@ export default defineConfig({
      * The base URL to be used in navigation actions such as `await page.goto('/')`.
      * You can specify a default URL here, if needed. Otherwise, remove the line or keep it empty.
      */
-    baseURL: '', // Default: empty, you can set a URL here if required.
+    baseURL: `https://animated-gingersnap-8cf7f2.netlify.app/`, // Default: empty, you can set a URL here if required.
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
     actionTimeout: ACTION_TIMEOUT,

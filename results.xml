@@ -1,6 +1,6 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="4.624758">
-<testsuite name="test.e2e.spec.ts" timestamp="2024-12-05T17:38:03.107Z" hostname="chromium" tests="1" failures="0" skipped="0" time="1.319" errors="0">
-<testcase name="Poplin  UseCases =&gt; Order Placement › Use Case 1: Place a New Order with Standard Delivery" classname="test.e2e.spec.ts" time="1.319">
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="1.6763769999999931">
+<testsuite name="test.e2e.spec.ts" timestamp="2024-12-06T22:58:20.357Z" hostname="chromium" tests="1" failures="0" skipped="0" time="0.783" errors="0">
+<testcase name="Poplin  UseCases =&gt; Order Placement › Use Case 1: Place a New Order with Standard Delivery" classname="test.e2e.spec.ts" time="0.783">
 <system-out>
 <![CDATA[Set Page Worker Index: 0
 Set Page Worker Index: 0

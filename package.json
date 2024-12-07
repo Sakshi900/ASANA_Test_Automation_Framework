@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "This is the Test UI automation with Playwright and Typescript",
   "scripts": {
-    "test": "npx playwright test",
-    "report": "playwright show-report playwright-report",
-    "allure": "allure generate ./allure-results --clean && allure open ./allure-report",
+    "test": "rimraf allure-report && allure generate allure-results --clean && rimraf allure-results && allure open",
     "cc-login": "npx playwright test tests/e2e/customerConnect/login tests/e2e/customerConnect/navMenu --project=chromium"
   },
   "repository": {
@@ -22,10 +20,11 @@
     "@faker-js/faker": "^8.4.1",
     "@playwright/test": "^1.49.0",
     "@types/node": "^22.10.1",
-    "allure-commandline": "^2.23.1",
-    "allure-playwright": "^2.5.0",
+    "allure-commandline": "^2.32.0",
+    "allure-playwright": "^2.15.1",
     "dotenv": "^16.4.5",
     "playwright": "^1.49.0",
+    "rimraf": "^6.0.1",
     "winston": "^3.11.0"
   },
   "dependencies": {

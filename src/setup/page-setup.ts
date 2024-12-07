@@ -19,24 +19,24 @@ baseTest.beforeAll(async ({ browser }: { browser: Browser }) => {
   expect(isPageCached).toBe(true);
 });
 
-// Hook to run before each test
-baseTest.beforeEach(async ({ browser }: { browser: Browser }) => {
-  const page = await browser.newPage();
+// // Hook to run before each test
+// baseTest.beforeEach(async ({ browser }: { browser: Browser }) => {
+//   const page = await browser.newPage();
   
-  // Grant permissions for notifications in the test context
-  await page.context().grantPermissions(['notifications']);
+//   // Grant permissions for notifications in the test context
+//   await page.context().grantPermissions(['notifications']);
   
-  const isPageCached = await setPageWithCache(page);
-  expect(isPageCached).toBe(true);
-});
+//   const isPageCached = await setPageWithCache(page);
+//   expect(isPageCached).toBe(true);
+// });
 
 // Hook to run after each test
-baseTest.afterEach(async () => {
-  const page = getPage();
-  if (page) {
-    await page.close();
-  }
-});
+// baseTest.afterEach(async () => {
+//   const page = getPage();
+//   if (page) {
+//     await page.close();
+//   }
+// });
 
 // Hook to run after all tests
 baseTest.afterAll(async () => {
