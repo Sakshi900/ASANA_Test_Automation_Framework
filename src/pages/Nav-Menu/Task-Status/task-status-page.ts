@@ -51,8 +51,10 @@ export async function verifyContentWithTaskStatus(
       await expectElementNotToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus, contentHeader));
     }
   } else {
-    // When task is blank (contentHeader empty)
+    // For blank task case (Test Case 7), check task status only
     await expectElementToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
+    
+    // Don't expect task details or tags to be visible
     await expectElementNotToBeVisible(TaskBoardElements.taskDetailsHeader(taskStatus, contentHeader));
     await expectElementNotToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
     await expectElementNotToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus, contentHeader));
