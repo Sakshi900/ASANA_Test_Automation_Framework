@@ -1,0 +1,8 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","283","Verify task ""Design system updates"" in ""Web Application""","chromium","Sat Dec 07 15:51:13 EST 2024","passed","Sat Dec 07 15:51:13 EST 2024","Loop QA UseCases => Login to Test site","test.e2e.spec.ts","",""
+"","233","Verify task ""Push notification system"" in ""Mobile Application""","chromium","Sat Dec 07 15:51:13 EST 2024","passed","Sat Dec 07 15:51:14 EST 2024","Loop QA UseCases => Login to Test site","test.e2e.spec.ts","",""
+"","230","Verify task ""Fix navigation bug"" in ""Web Application""","chromium","Sat Dec 07 15:51:13 EST 2024","passed","Sat Dec 07 15:51:13 EST 2024","Loop QA UseCases => Login to Test site","test.e2e.spec.ts","",""
+"","298","Verify task """" in ""Mobile Application""","chromium","Sat Dec 07 15:51:14 EST 2024","passed","Sat Dec 07 15:51:14 EST 2024","Loop QA UseCases => Login to Test site","test.e2e.spec.ts","",""
+"","235","Verify task ""App icon design"" in ""Mobile Application""","chromium","Sat Dec 07 15:51:14 EST 2024","passed","Sat Dec 07 15:51:14 EST 2024","Loop QA UseCases => Login to Test site","test.e2e.spec.ts","",""
+"","812","Verify task ""Implement user authentication"" in ""Web Application""","chromium","Sat Dec 07 15:51:12 EST 2024","passed","Sat Dec 07 15:51:13 EST 2024","Loop QA UseCases => Login to Test site","test.e2e.spec.ts","",""
+"","231","Verify task ""Offline mode"" in ""Mobile Application""","chromium","Sat Dec 07 15:51:14 EST 2024","passed","Sat Dec 07 15:51:14 EST 2024","Loop QA UseCases => Login to Test site","test.e2e.spec.ts","",""
