@@ -1,0 +1,51 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run Playwright tests
+      - name: Run Playwright tests
+        run: npm run test
+
+      # Step 5: Generate Allure Report
+      - name: Generate Allure Report
+        run: |
+          npx allure generate allure-results --clean
+
+      # Step 6: Upload Allure Report as an artifact
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: allure-report
+
+      # Step 7: Save Playwright Test Results (Optional)
+      - name: Upload Playwright Test Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: test-results

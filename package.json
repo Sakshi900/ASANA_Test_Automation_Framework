@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "This is the Test UI automation with Playwright and Typescript",
   "scripts": {
-    "test": "rimraf allure-report && allure generate allure-results --clean && rimraf allure-results && allure open",
+    "test": "npx playwright test && npx allure generate allure-results --clean && npx allure open",
     "cc-login": "npx playwright test tests/e2e/customerConnect/login tests/e2e/customerConnect/navMenu --project=chromium"
   },
   "repository": {

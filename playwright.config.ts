@@ -27,7 +27,7 @@ export default defineConfig({
   /**
    * Determines whether to run tests within each spec file in parallel, in addition to running the spec files themselves in parallel.
    */
-  fullyParallel: false,
+  fullyParallel: true,
 
   /**
    * Whether to fail the build on CI if you accidentally left test.only in the source code.
@@ -42,7 +42,7 @@ export default defineConfig({
   /**
    * The number of worker threads to use for running tests. This is set to a different value on CI.
    */
-  workers: process.env.CI ? 2 : 2,
+  workers: process.env.CI ? 2 : 4,
 
   /* Note: Add allure-playwright report */
   /**
@@ -58,7 +58,7 @@ export default defineConfig({
   },
 
   use: {
-    headless: false,
+    headless: true,
     launchOptions: {
       args: [
         '--enable-features=NativeNotifications',
