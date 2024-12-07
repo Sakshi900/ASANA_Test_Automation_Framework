@@ -17,11 +17,11 @@ const TaskBoardElements = {
 
 export async function verifySelectedComponentDetails(taskHeader: string[], componentname: string) {
   await waitForPageLoadState()
-  await expectElementToBeVisible(TaskBoardElements.componentSelectedHeader(componentname))
-  await expectElementToHaveText(TaskBoardElements.componentSelectedHeader(componentname), componentname)
+  await expectElementToBeVisible(await TaskBoardElements.componentSelectedHeader(componentname))
+  await expectElementToHaveText(await TaskBoardElements.componentSelectedHeader(componentname), componentname)
 
   for (const taskStatus of taskHeader) {
-    await expectElementToBeVisible(TaskBoardElements.taskHeaders(taskStatus));
+    await expectElementToBeVisible(await TaskBoardElements.taskHeaders(taskStatus));
   }
 }
 
@@ -39,17 +39,17 @@ export async function verifyContentWithTaskStatus(
     const tagElements = await TaskBoardElements.taskDetailsTags(taskStatus, contentHeader).all();
 
     // Wait for all tag elements
-    await Promise.all(tagElements.map(async (element) => await element.waitFor()));
+    await Promise.all(await tagElements.map(async (element) => await element.waitFor()));
 
     const actualTags = await Promise.all(
-      tagElements.map(async (element) => await element.textContent()) // Extract the text from each element
+      await tagElements.map(async (element) => await element.textContent()) // Extract the text from each element
     );
 
     // Ensure taskTags is an array of non-empty strings
-    if (taskTags.length > 0) {
+    if (await taskTags.length > 0) {
       for (const tag of taskTags) {
         // If the tag is blank, skip the check for that tag
-        if (tag.trim() === '') continue;
+        if (await tag.trim() === '') continue;
 
         if (!actualTags.includes(tag)) {
           throw new Error(`Expected tag "${tag}" not found in task tags. Found: ${actualTags.join(', ')}`);
