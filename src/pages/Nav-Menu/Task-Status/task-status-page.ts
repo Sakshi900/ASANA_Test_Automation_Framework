@@ -1,5 +1,5 @@
 import { expect } from "playwright/test";
-import { waitForPageLoadState } from "../../../utils/action-utils";
+import { textContent, wait, waitForPageLoadState } from "../../../utils/action-utils";
 import { expectElementNotToBeVisible, expectElementToBeVisible, expectElementToContainText, expectElementToHaveCount, expectElementToHaveText } from "../../../utils/assert-utils";
 import { getLocator, getLocatorByText } from "../../../utils/locator-utils";
 
@@ -18,6 +18,9 @@ const TaskBoardElements = {
 
 export async function verifySelectedComponentDetails(taskHeader: string[], task: string) {
   await waitForPageLoadState()
+  if(task.includes("Mobile Application")) {
+    await wait(2000)
+  }
   await expectElementToBeVisible(await TaskBoardElements.appHeader(task))
   for (const taskStatus of taskHeader) {
     await expectElementToBeVisible(await TaskBoardElements.taskStatus(taskStatus));
