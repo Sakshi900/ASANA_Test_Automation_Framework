@@ -66,8 +66,8 @@ export const TaskStatusData = [
   {
     test: 'Test Case 7 => Test for handling blank task and no tags',
     app: "Mobile Application",
-    task: '',
-    taskDetails: '',
+    task: null,
+    taskDetails: null,
     taskStatus: "Review",
     tags: []
   },
