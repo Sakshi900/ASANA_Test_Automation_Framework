@@ -1,7 +1,7 @@
 import { AppData } from "../../../tests/testdata/test-data";
-import { click } from "../../utils/action-utils";
+import { click, wait, waitForPageLoadState } from "../../utils/action-utils";
 import { expectElementToBeVisible } from "../../utils/assert-utils";
-import { getLocatorByText } from "../../utils/locator-utils";
+import { getLocatorByText, waitFor, waitForSelector } from "../../utils/locator-utils";
 
 const AppPageElements = {
   appName: (appName:string) => getLocatorByText(appName),
@@ -9,8 +9,11 @@ const AppPageElements = {
 }
 
 export async function navigateToApp(appName: string) {
+  await waitForPageLoadState()
     if (appName !== AppData.webApplicationName) {
         await click(AppPageElements.appName(appName).first());
+        await waitForPageLoadState()
+
       }
 }
   

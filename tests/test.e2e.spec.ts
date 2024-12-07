@@ -4,10 +4,10 @@ import * as TaskPage from '../src/pages/Nav-Menu/Task-Status/task-status-page';
 import * as AppPage from '../src/pages/Nav-Menu/app-page';
 import { ASANA_URLS, USER_INFO, TaskStatusData } from './testdata/test-data';
 import { allure } from 'allure-playwright';
-import { gotoURL } from '../src/utils/action-utils';
+import { gotoURL, wait } from '../src/utils/action-utils';
 
 test.describe('Loop QA UseCases => Login to Test site', () => {
-  
+
 
   test.beforeEach('Login Test', async () => {
     allure.label('BeforeAll', 'Login To Application');
@@ -23,7 +23,7 @@ test.describe('Loop QA UseCases => Login to Test site', () => {
   });
 
   TaskStatusData.forEach(taskData => {
-    test(`Verify task "${taskData.task}" in "${taskData.app}"`, async ({ page }) => {
+    test(`"${taskData.test}" ==>  Verify task "${taskData.task}" in "${taskData.app}"`, async ({ }) => {
       allure.label('Verify task', `"${taskData.task}" in "${taskData.app}"`);
       AppPage.navigateToApp(taskData.app)
       TaskPage.verifySelectedComponentDetails([taskData.taskStatus], taskData.app);
