@@ -26,7 +26,7 @@ export default defineConfig({
   /**
    * Determines whether to run tests within each spec file in parallel, in addition to running the spec files themselves in parallel.
    */
-  fullyParallel: true,
+  fullyParallel: false,
 
   /**
    * Whether to fail the build on CI if you accidentally left test.only in the source code.
