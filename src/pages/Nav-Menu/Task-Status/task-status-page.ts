@@ -1,3 +1,4 @@
+import { waitForPageLoadState } from "../../../utils/action-utils";
 import { expectElementNotToBeVisible, expectElementToBeVisible, expectElementToHaveText } from "../../../utils/assert-utils";
 import { getLocator, getLocatorByText } from "../../../utils/locator-utils";
 
@@ -15,6 +16,7 @@ const TaskBoardElements = {
 }
 
 export async function verifySelectedComponentDetails(taskHeader: string[], componentname: string) {
+  await waitForPageLoadState()
   await expectElementToBeVisible(TaskBoardElements.componentSelectedHeader(componentname))
   await expectElementToHaveText(TaskBoardElements.componentSelectedHeader(componentname), componentname)
 
