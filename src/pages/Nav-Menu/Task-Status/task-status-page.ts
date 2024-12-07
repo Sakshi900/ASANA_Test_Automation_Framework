@@ -31,33 +31,22 @@ export async function verifyContentWithTaskStatus(
   contentSubheader: string,
   taskTags: string[]
 ) {
-  // If taskHeader (contentHeader) is not blank
-  if (contentHeader && contentHeader.trim() !== '') {
-    await expectElementToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
-    await expectElementToBeVisible(TaskBoardElements.taskDetailsHeader(taskStatus, contentHeader));
-    await expectElementToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
-
-    // Check if tags exist and are visible
-    const tagElements = await TaskBoardElements.taskDetailsTags(taskStatus, contentHeader).all();
-    await Promise.all(tagElements.map(async (element) => await element.waitFor()));
-
-    if (taskTags.length > 0) {
-      // Expect each tag to be visible if taskTags are present
-      for (const tag of taskTags) {
-        await expectElementToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus, tag));
-      }
-    } else {
-      // If no tags, make sure tags are not visible
-      await expectElementNotToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus, contentHeader));
-    }
-  } else {
-    // For blank task case (Test Case 7), check task status only
-    await expectElementToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
-    
-    // Don't expect task details or tags to be visible
+  await expectElementToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
+  if (contentHeader && contentHeader.trim() == '' && taskTags == null) {
     await expectElementNotToBeVisible(TaskBoardElements.taskDetailsHeader(taskStatus, contentHeader));
     await expectElementNotToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
     await expectElementNotToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus, contentHeader));
+    await expectElementNotToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus, contentHeader));
+  } else {
+    await expectElementToBeVisible(TaskBoardElements.taskDetailsHeader(taskStatus, contentHeader));
+    await expectElementToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
+
+    const tagElements = await TaskBoardElements.taskDetailsTags(taskStatus, contentHeader).all();
+    await Promise.all(tagElements.map(async (element) => await element.waitFor()));
+
+    for (const tag of taskTags) {
+      await expectElementToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus, tag));
+    }
   }
 }
 
