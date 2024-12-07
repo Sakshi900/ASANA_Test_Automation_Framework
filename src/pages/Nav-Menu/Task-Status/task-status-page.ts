@@ -31,25 +31,28 @@ export async function verifyContentWithTaskStatus(
   contentSubheader: string,
   taskTags: string[]
 ) {
-  if (await contentHeader && contentHeader.trim() !== ''|| null) {
+  // Corrected the condition for contentHeader check
+  if (contentHeader && contentHeader.trim() !== '') {
     await expectElementToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
     await expectElementToBeVisible(TaskBoardElements.taskDetailsHeader(taskStatus, contentHeader));
     await expectElementToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
-    
+
     const tagElements = await TaskBoardElements.taskDetailsTags(taskStatus, contentHeader).all();
 
-    await Promise.all( await tagElements.map(async (element) => await element.waitFor()));
+    // Use Promise.all to wait for tag elements to stabilize
+    await Promise.all(tagElements.map(async (element) => {
+      await element.waitFor();
+    }));
 
-    if (await taskTags.length > 0) {
+    if (taskTags.length > 0) {
       for (const tag of taskTags) {
-        await expectElementToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus,tag));
-
+        await expectElementToBeVisible(TaskBoardElements.taskDetailsTags(taskStatus, tag));
       }
-    } else {
-      // For blank contentHeader, expect elements to be not visible
-      await expectElementNotToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
-      await expectElementNotToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
     }
+  } else {
+    // For blank contentHeader, expect elements to be not visible
+    await expectElementNotToBeVisible(TaskBoardElements.contentTaskBox(taskStatus));
+    await expectElementNotToBeVisible(TaskBoardElements.taskDetailsSubtext(taskStatus, contentSubheader));
   }
 }
 
