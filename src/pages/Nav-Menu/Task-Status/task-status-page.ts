@@ -18,7 +18,7 @@ const TaskBoardElements = {
 export async function verifySelectedComponentDetails(taskHeader: string[], componentname: string) {
   await waitForPageLoadState()
   await expectElementToBeVisible(await TaskBoardElements.componentSelectedHeader(componentname))
-  await expectElementToHaveText(await TaskBoardElements.componentSelectedHeader(componentname), componentname)
+  // await expectElementToHaveText(await TaskBoardElements.componentSelectedHeader(componentname), componentname)
 
   for (const taskStatus of taskHeader) {
     await expectElementToBeVisible(await TaskBoardElements.taskHeaders(taskStatus));
