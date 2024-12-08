@@ -1,0 +1,25 @@
+Set Page Error:  TypeError: (0 , _cache.set) is not a function
+    at setPageWithCache (/Users/anishbatra/Documents/ASANA_Test_Automation_Framework/src/utils/page-utils.ts:55:8)
+    at /Users/anishbatra/Documents/ASANA_Test_Automation_Framework/src/setup/page-setup.ts:18:24
+    at /Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/fixtureRunner.js:250:7
+    at /Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/testInfo.js:286:11
+    at TimeoutManager.withRunnable (/Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/timeoutManager.js:64:14)
+    at TestInfoImpl._runAsStage (/Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/testInfo.js:284:7)
+    at FixtureRunner.resolveParametersAndRunFunction (/Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/fixtureRunner.js:246:5)
+    at /Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/workerMain.js:535:13
+    at /Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/testInfo.js:286:11
+    at TimeoutManager.withRunnable (/Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/timeoutManager.js:52:27)
+    at TestInfoImpl._runAsStage (/Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/testInfo.js:284:7)
+    at WorkerMain._runAllHooksForSuite (/Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/workerMain.js:516:9)
+    at WorkerMain._runBeforeAllHooksForSuite (/Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/workerMain.js:509:5)
+    at /Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/workerMain.js:316:37
+    at /Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/testInfo.js:286:11
+    at TimeoutManager.withRunnable (/Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/timeoutManager.js:52:27)
+    at TestInfoImpl._runAsStage (/Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/testInfo.js:284:7)
+    at /Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/workerMain.js:309:7
+    at /Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/testInfo.js:286:11
+    at TimeoutManager.withRunnable (/Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/timeoutManager.js:52:27)
+    at TestInfoImpl._runAsStage (/Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/testInfo.js:284:7)
+    at WorkerMain._runTest (/Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/workerMain.js:281:5)
+    at WorkerMain.runTestGroup (/Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/worker/workerMain.js:205:11)
+    at process.<anonymous> (/Users/anishbatra/Documents/ASANA_Test_Automation_Framework/node_modules/playwright/lib/common/process.js:95:22)

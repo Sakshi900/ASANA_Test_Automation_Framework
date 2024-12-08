@@ -8,7 +8,6 @@ import { gotoURL, wait } from '../src/utils/action-utils';
 
 test.describe.serial('Loop QA UseCases => Login to Test site', () => {
 
-
   test.beforeEach('Login Test', async () => {
     allure.label('BeforeAll', 'Login To Application');
     await gotoURL(ASANA_URLS.baseUrl);
